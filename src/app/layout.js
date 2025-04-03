@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import "./css/globals.css";
 
 export default function DashboardLayout({ children }) {
   return (
