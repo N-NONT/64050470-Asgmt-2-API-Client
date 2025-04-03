@@ -11,7 +11,6 @@ export async function fetchDroneData(droneIds) {
         try {
           const res = await fetch(`${apiEndpoint}${droneId}`);
   
-          // ตรวจสอบว่า API ส่งค่ามาหรือไม่
           if (!res.ok) {
             console.warn(`Failed to fetch data for drone ID: ${droneId}, Status: ${res.status}`);
             return {
@@ -24,7 +23,6 @@ export async function fetchDroneData(droneIds) {
   
           const data = await res.json();
   
-          // ตรวจสอบว่า data มีข้อมูลที่ต้องการหรือไม่
           if (data && data.drone_id) {
             return data;
           } else {
@@ -48,6 +46,6 @@ export async function fetchDroneData(droneIds) {
       })
     );
   
-    return droneData.filter((drone) => drone !== null); // กรองค่า null ที่อาจเกิดขึ้นจาก API ที่ไม่พบข้อมูล
+    return droneData.filter((drone) => drone !== null); 
   }
   
