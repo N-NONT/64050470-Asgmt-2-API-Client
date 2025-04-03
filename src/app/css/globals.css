@@ -24,27 +24,24 @@
   font-weight: bold;
 }
 
-/* globals.css */
+
 
 
 .card.configs {
-  height: 850px; 
-  width: 700px; 
-  overflow-y: auto; 
+  height: 850px;
+  width: 48%; /* ปรับความกว้างเพื่อให้ทั้งสอง card พอดีกัน */
+  overflow-y: auto;
   padding: 20px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  /* margin-left: auto; 
-  margin-right: auto; */
+  /* ไม่จำเป็นต้องกำหนด margin-left, margin-right ที่นี่ */
 }
 
-h1 {
+.toppic {
   position: sticky;
   top: 0;
   background-color: #fff;
-  padding: 10px;
-  z-index: 2;
 }
 
 .table-wrapper {
@@ -69,6 +66,7 @@ thead th {
   background-color: #fff;
   z-index: 1;
 }
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
