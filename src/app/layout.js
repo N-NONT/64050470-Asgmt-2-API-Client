@@ -1,5 +1,9 @@
-import Link from 'next/link';
 import "./css/globals.css";
+
+export const metadata = { 
+  title: "View Config",
+  icons: "/KMITL.png",
+};
 
 export default function DashboardLayout({ children }) {
   return (
