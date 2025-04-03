@@ -17,9 +17,19 @@ async function fetchDroneData() {
   const droneData = await Promise.all(
     droneIds.map(async (droneId) => {
       try {
-        const res = await fetch(
-          `https://assignment1-470-371682635124.asia-southeast1.run.app/configs/${droneId}`
-        );
+        const apiEndpoint = process.env.CONFIG_SERVER_API_ENDPOINT;
+        
+        if (!apiEndpoint) {
+          console.error("CONFIG_SERVER_API_ENDPOINT is not defined in the environment variables");
+          return {
+            drone_id: droneId,
+            drone_name: "Error",
+            light: "N/A",
+            country: "Error",
+          };
+        }
+
+        const res = await fetch(`${apiEndpoint}${droneId}`);
 
         // ตรวจสอบว่า API ส่งค่ามาหรือไม่
         if (!res.ok) {
@@ -60,6 +70,7 @@ async function fetchDroneData() {
 
   return droneData.filter((drone) => drone !== null); // กรองค่า null ที่อาจเกิดขึ้นจาก API ที่ไม่พบข้อมูล
 }
+
 
 
 export default async function HomePage() {
