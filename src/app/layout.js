@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="stylesheet" href="/css/globals.css" />
+        <link rel="stylesheet"/>
       </head>
       <body>
         {/* Navbar */}
