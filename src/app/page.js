@@ -1,103 +1,73 @@
-import Image from "next/image";
+// app/page.js (Server Component)
+import "./css/globals.css";
 
-export default function Home() {
+async function fetchDroneData() {
+  const droneIds = process.env.DRONE_IDS.split(",");
+
+  const droneData = await Promise.all(
+    droneIds.map(async (droneId) => {
+      try {
+        const res = await fetch(
+          `https://assignment1-470-371682635124.asia-southeast1.run.app/configs/${droneId}`
+        );
+        const data = await res.json();
+
+        // ตรวจสอบว่า data.data มีข้อมูลหรือไม่
+        if (data && data.drone_id) {
+          return data; // หากมีข้อมูล, ให้ใช้ข้อมูลที่ได้รับจาก API
+        } else {
+          console.warn(`No data found for drone ID: ${droneId}`);
+          return {
+            drone_id: droneId,
+            drone_name: "Unknown",
+            light: "N/A",
+            country: "Unknown",
+          }; // คืนค่า default
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return {
+          drone_id: droneId,
+          drone_name: "Error",
+          light: "N/A",
+          country: "Error",
+        }; // คืนค่า error fallback
+      }
+    })
+  );
+
+  return droneData.filter((drone) => drone !== null); // กรองค่า null ที่อาจเกิดขึ้นจาก API ที่ไม่พบข้อมูล
+}
+
+export default async function HomePage() {
+  const droneData = await fetchDroneData();
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className="card configs" style={{ marginLeft: 'auto', marginRight: '0' }}>
+      <h1 style={{ textAlign: 'center' }}>Drone Configurations</h1>
+      <div className="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Drone ID</th>
+              <th>Drone Name</th>
+              <th>Light</th>
+              <th>Country</th>
+            </tr>
+          </thead>
+          <tbody>
+            {droneData.map((drone) => (
+              <tr key={drone.drone_id}>
+                <td>{drone.drone_id}</td>
+                <td>{drone.drone_name}</td>
+                <td>{drone.light}</td>
+                <td>{drone.country}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
+
