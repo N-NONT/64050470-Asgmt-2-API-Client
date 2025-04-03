@@ -1,9 +1,12 @@
 import "./css/globals.css";
+import Link from 'next/link';
 
 export const metadata = { 
   title: "View Config",
   icons: "/KMITL.png",
 };
+
+
 
 export default function DashboardLayout({ children }) {
   return (
@@ -12,7 +15,7 @@ export default function DashboardLayout({ children }) {
         <link rel="stylesheet"/>
       </head>
       <body>
-
+        {/* Navbar */}
         <nav className="navbar">
           <ul>
             <li><Link href="/">Home</Link></li>

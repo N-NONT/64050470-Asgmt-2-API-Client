@@ -2,7 +2,17 @@
 import "./css/globals.css";
 
 async function fetchDroneData() {
-  const droneIds = process.env.DRONE_IDS.split(",");
+  if (!process.env.DRONE_IDS) {
+    console.warn("No DRONE_IDS environment variable found");
+    return []; // หากไม่มี DRONE_IDS ให้คืนค่าเป็น array เปล่า
+  }
+
+  const droneIds = process.env.DRONE_IDS.split(",").filter((id) => id.trim() !== "");
+
+  if (droneIds.length === 0) {
+    console.warn("No valid drone IDs provided");
+    return []; // หากไม่มี drone ID ที่ valid
+  }
 
   const droneData = await Promise.all(
     droneIds.map(async (droneId) => {
@@ -10,19 +20,31 @@ async function fetchDroneData() {
         const res = await fetch(
           `https://assignment1-470-371682635124.asia-southeast1.run.app/configs/${droneId}`
         );
+
+        // ตรวจสอบว่า API ส่งค่ามาหรือไม่
+        if (!res.ok) {
+          console.warn(`Failed to fetch data for drone ID: ${droneId}, Status: ${res.status}`);
+          return {
+            drone_id: droneId,
+            drone_name: "Error",
+            light: "N/A",
+            country: "Error",
+          };
+        }
+
         const data = await res.json();
 
-        // ตรวจสอบว่า data.data มีข้อมูลหรือไม่
+        // ตรวจสอบว่า data มีข้อมูลที่ต้องการหรือไม่
         if (data && data.drone_id) {
-          return data; // หากมีข้อมูล, ให้ใช้ข้อมูลที่ได้รับจาก API
+          return data;
         } else {
-          console.warn(`No data found for drone ID: ${droneId}`);
+          console.warn(`No valid data found for drone ID: ${droneId}`);
           return {
             drone_id: droneId,
             drone_name: "Unknown",
             light: "N/A",
             country: "Unknown",
-          }; // คืนค่า default
+          };
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -31,13 +53,14 @@ async function fetchDroneData() {
           drone_name: "Error",
           light: "N/A",
           country: "Error",
-        }; // คืนค่า error fallback
+        };
       }
     })
   );
 
   return droneData.filter((drone) => drone !== null); // กรองค่า null ที่อาจเกิดขึ้นจาก API ที่ไม่พบข้อมูล
 }
+
 
 export default async function HomePage() {
   const droneData = await fetchDroneData();
