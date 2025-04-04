@@ -1,3 +1,13 @@
+
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+
 /* Navbar */
 .navbar {
   background-color: #0070f3;
@@ -24,18 +34,18 @@
   font-weight: bold;
 }
 
-
-
-
 .card.configs {
-  height: 850px;
-  width: 48%; /* ปรับความกว้างเพื่อให้ทั้งสอง card พอดีกัน */
+  height: 90vh;
+  width: 70%;
   overflow-y: auto;
   padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  /* ไม่จำเป็นต้องกำหนด margin-left, margin-right ที่นี่ */
+
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .toppic {
@@ -54,7 +64,8 @@ table {
   table-layout: fixed;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -67,36 +78,36 @@ thead th {
   z-index: 1;
 }
 
-
 /* Responsive Styles */
 @media (max-width: 768px) {
   .card.configs {
-    width: 90%; 
-    margin-left: 0; 
-    margin-right: 0; 
+    width: 90%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   table {
     font-size: 14px;
   }
 
-  th, td {
+  th,
+  td {
     padding: 8px;
   }
 }
 
 @media (max-width: 480px) {
   .card.configs {
-    width: 100%; 
-    height: auto; 
+    width: 100%;
+    height: auto;
   }
 
   table {
-    font-size: 12px; 
+    font-size: 12px;
   }
 
-  th, td {
-    padding: 6px; 
+  th,
+  td {
+    padding: 6px;
   }
 }
-

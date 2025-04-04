@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }) {
       <head>
         <link rel="stylesheet"/>
       </head>
-      <body>
+      <body className="h-screen overflow-hidden">
         {/* Navbar */}
         <nav className="navbar">
           <ul>
@@ -25,7 +25,6 @@ export default function DashboardLayout({ children }) {
           </ul>
         </nav>
 
-        {/* Layout UI */}
         <main className="content">{children}</main>
       </body>
     </html>

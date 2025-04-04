@@ -7,12 +7,9 @@ export default async function HomePage() {
   const droneData = await fetchDroneData(droneIds);
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-between" }}>
-      <div className="card configs" style={{ marginRight: "20px", marginTop: "20px" }}>
-        hello uu
-      </div>
+    // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', borderStyle: 'solid' }}>
 
-      <div className="card configs" style={{ marginTop: "20px" }}>
+      <div className="card configs" style={{ marginTop: "60px", marginLeft:"20px" }}>
         <h1 className="toppic" style={{ textAlign: "center" }}>
           Drone Configurations
         </h1>
@@ -39,6 +36,6 @@ export default async function HomePage() {
           </table>
         </div>
       </div>
-    </div>
+    // </div>
   );
 }
