@@ -1,23 +1,36 @@
 "use client";
-import "../css/globals.css";
-import { useState, useEffect } from "react";
 
-export default function ViewLogs() {
+import { useState } from "react";
+import "../css/globals.css";
+
+export default function ViewLogs({ droneIds }) {
   const [droneId, setDroneId] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(false);
-  const apiEndpoint = process.env.LOG_SERVER_API_ENDPOINT;
 
   const handleDroneIdChange = (e) => {
     setDroneId(e.target.value);
+    if (e.target.value !== "") {
+      setSearchTerm(""); // disable search input
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    if (e.target.value !== "") {
+      setDroneId(""); // disable droneId select
+    }
   };
 
   const fetchLogs = async (id) => {
     setLoading(true);
     try {
-      const response = await fetch(process.env.LOG_SERVER_API_ENDPOINT);
+      const response = await fetch(
+        `https://assignment1-470-371682635124.asia-southeast1.run.app/logs/${id}`
+      );
       const data = await response.json();
-      setLogs(data.slice(0, 25)); // รับแค่ 25 รายการล่าสุด
+      setLogs(data.slice(0, 25));
     } catch (error) {
       console.error("Error fetching logs:", error);
     } finally {
@@ -27,8 +40,9 @@ export default function ViewLogs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (droneId) {
-      fetchLogs(droneId);
+    const idToFetch = droneId || searchTerm;
+    if (idToFetch) {
+      fetchLogs(idToFetch);
     }
   };
 
@@ -36,27 +50,52 @@ export default function ViewLogs() {
     <div style={{ marginTop: "60px" }}>
       <h2 style={{ textAlign: "center" }}>View Logs</h2>
 
-      <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
-        <label htmlFor="droneId" style={{ marginRight: "10px" }}>
-          Enter Drone ID:
-        </label>
-        <input
-          type="text"
-          id="droneId"
-          value={droneId}
-          onChange={handleDroneIdChange}
-          placeholder="Enter Drone ID"
-          style={{ padding: "10px", fontSize: "16px", width: "200px" }}
-        />
+      <form onSubmit={handleSubmit} style={{ marginBottom: "20px", textAlign: "center" }}>
+        <div style={{ marginBottom: "10px" }}>
+          <label htmlFor="droneId" style={{ marginRight: "10px" }}>
+            Select Drone ID:
+          </label>
+          <select
+            id="droneId"
+            value={droneId}
+            onChange={handleDroneIdChange}
+            disabled={searchTerm !== ""}
+            style={{ padding: "10px", fontSize: "16px", marginRight: "10px" }}
+          >
+            <option value="">-- Select Drone ID --</option>
+            {droneIds.map((id) => (
+              <option key={id} value={id}>
+                {id}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div style={{ marginBottom: "20px" }}>
+          <label htmlFor="search" style={{ marginRight: "10px" }}>
+            Or Search:
+          </label>
+          <input
+            type="text"
+            id="search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            placeholder="Enter Drone ID"
+            disabled={droneId !== ""}
+            style={{ padding: "10px", fontSize: "16px", width: "200px", marginRight: "10px" }}
+          />
+        </div>
+
         <button
           type="submit"
+          disabled={!droneId && !searchTerm}
           style={{
             padding: "10px 20px",
             fontSize: "16px",
             backgroundColor: "#0070f3",
             color: "white",
             border: "none",
-            cursor: "pointer",
+            cursor: (droneId || searchTerm) ? "pointer" : "not-allowed",
           }}
         >
           Fetch Logs

@@ -1,13 +1,18 @@
+// src/app/viewLogs/page.js
+import "../css/globals.css";
 import ViewLogs from "./ViewLogs";
-export const metadata = { 
+import { getDroneIds } from "../services/getDroneIds";
+
+export const metadata = {
   title: "View Logs",
 };
 
-export default async function Page3() {
+export default function Page() {
+  const droneIds = getDroneIds(); // Server-side
+
   return (
     <div style={{ marginTop: "60px" }}>
-      <ViewLogs/>
+      <ViewLogs droneIds={droneIds} />
     </div>
   );
 }
-
