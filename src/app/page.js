@@ -8,8 +8,9 @@ export default async function HomePage() {
 
   return (
     // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', borderStyle: 'solid' }}>
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
 
-      <div className="card configs" style={{ marginTop: "60px", marginLeft:"20px" }}>
+      <div className="card configsL" style={{ marginTop: "60px", marginLeft:"20px" , flexDirection: "column" }}>
         <h1 className="toppic" style={{ textAlign: "center" }}>
           Drone Configurations
         </h1>
@@ -36,6 +37,28 @@ export default async function HomePage() {
           </table>
         </div>
       </div>
-    // </div>
+
+
+
+    <div className="card configsR" style={{ marginRight: "20px", marginLeft: "20px", marginTop: "60px", display: "flex", flexDirection: "column" }}>
+         {/* ส่วนบน */}
+         <div style={{ flex: "1", padding: "10px", backgroundColor: "#f0f0f0" }}>
+           hello uu
+         </div>
+         {/* ส่วนล่าง */}
+         <div style={{ flex: "1", padding: "10px", backgroundColor: "#e0e0e0" }}>
+           {/* ใส่เนื้อหาหรือสิ่งที่ต้องการในส่วนล่าง */}
+           <ul>
+             {droneData.map((drone) => (
+               <li key={drone.drone_id}>{drone.drone_id}</li>  
+             ))}
+           </ul>
+         </div>
+    </div>
+
+
+
+
+    </div>
   );
 }
