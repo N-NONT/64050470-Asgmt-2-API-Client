@@ -91,7 +91,7 @@ export default function HomePage() {
           flexDirection: "column",
           width: isSmallScreen ? "90%" : "55%", 
           marginTop: isSmallScreen ? "20%" : "4%", 
-          fontSize: isSmallScreen ? "20%" : "100%", 
+          fontSize: isSmallScreen ? "45%" : "100%", 
         }}
       >
         <h1 className="toppic" style={{ textAlign: "center" }}>
