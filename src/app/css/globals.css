@@ -1,4 +1,3 @@
-
 html, body {
   height: 100vh;
   margin: 0;
@@ -8,12 +7,9 @@ html, body {
   font-family: 'Open Sans', sans-serif;
 }
 
-
-
-/* Navbar */
 .navbar {
   background-color: #0070f3;
-  padding: 10px 20px;
+  padding: 15px 20px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -23,50 +19,72 @@ html, body {
 .navbar ul {
   list-style: none;
   display: flex;
-  justify-content: center;
-  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
   padding: 0;
   margin: 0;
+  width: 100%;
+}
+
+.navbar .nav-left,
+.navbar .nav-right {
+  display: flex;
+  gap: 20px;
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar .nav-right {
+  margin-left: auto;
+  padding-right: 30px;
+}
+
+.navbar .nav-right a {
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .card.configsL {
   max-height: 90vh;
   overflow-y: auto;
   width: 60%;
-  overflow-y: auto;
   padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
-
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
 
 .card.configsR {
-  max-height: 90vh;
+  max-height: 90vh;  
   overflow-y: auto;
-  width: 40%;
-  overflow-y: auto;
+  width: 40%;  
   padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
-
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
+
 
 
 .card.ViewLogs {
@@ -79,14 +97,11 @@ html, body {
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  
-
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
-
 
 .table-wrapper {
   width: 100%;
@@ -94,16 +109,10 @@ html, body {
   overflow-y: auto;
 }
 
-
 .toppic {
   position: sticky;
   top: 0;
   background-color: #fff;
-}
-
-.table-wrapper {
-  overflow-y: auto;
-  flex-grow: 1;
 }
 
 table {
@@ -129,7 +138,48 @@ thead th {
 
 
 
+.data-table table {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
 
+.data-table th,
+.data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.data-table th {
+  background-color: #0070f3;
+  color: white;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.data-table tr:hover {
+  background-color: #ddd;
+}
+
+/* เพิ่มลักษณะให้หัวของตารางไม่เลื่อน */
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+/* เพิ่มขอบและการแสดงผลส่วนของข้อมูล (ตาราง) */
+.table-wrapper {
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
+  margin-top: 20px;
+}
 
 
 

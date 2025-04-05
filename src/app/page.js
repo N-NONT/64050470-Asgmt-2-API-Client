@@ -10,10 +10,8 @@ export default function HomePage() {
   const [selectedDroneData, setSelectedDroneData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
   const formatValue = (value) =>
     value === "Error" || value === "N/A" ? "Loading..." : value;
-
 
   useEffect(() => {
     const cached = localStorage.getItem("droneData");
@@ -60,7 +58,11 @@ export default function HomePage() {
       {/* ฝั่งซ้าย */}
       <div
         className="card configsL"
-        style={{ marginTop: "60px", marginLeft: "20px", flexDirection: "column" }}
+        style={{
+          marginTop: "100px",
+          marginLeft: "20px",
+          flexDirection: "column",
+        }}
       >
         <h1 className="toppic" style={{ textAlign: "center" }}>
           Drone Configurations
@@ -99,20 +101,28 @@ export default function HomePage() {
         style={{
           marginRight: "20px",
           marginLeft: "20px",
-          marginTop: "60px",
+          marginTop: "100px",
           display: "flex",
           flexDirection: "column",
         }}
       >
-        {/* ส่วนบน */}
-        <div style={{ flex: "1", padding: "10px", backgroundColor: "#f0f0f0" }}>
-          <label htmlFor="droneId">Choose Drone ID</label>
+        <div style={{ flex: "0", padding: "10px" }}>
+        <br></br> 
+          <label htmlFor="droneId">
+            <span style={{ fontSize: "20px"}}>Choose Drone ID</span>
+          </label>
+          <br></br> <br></br>
           <select
             name="droneId"
             id="droneId"
             value={selectedDroneId || ""}
             onChange={handleSelectChange}
-            style={{ width: "100%", padding: "10px", fontSize: "16px" }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              fontSize: "16px",
+              borderRadius: "5px",
+            }}
             disabled={loading}
           >
             {droneData.map((drone) => (
@@ -124,24 +134,41 @@ export default function HomePage() {
         </div>
 
         {/* ส่วนล่าง */}
-        <div style={{ flex: "1", padding: "10px", backgroundColor: "#e0e0e0" }}>
+        <div  style={{ flex: "1", padding: "10px", backgroundColor: "#e0e0e0", borderRadius: "10px", marginTop: "50px" }}>
           {selectedDroneData ? (
             <div>
-              <h3>Drone Information</h3>
-              <ul>
-                <li>
-                  <strong>Drone ID:</strong> {selectedDroneData.drone_id}
-                </li>
-                <li>
-                  <strong>Drone Name:</strong> {formatValue(selectedDroneData.drone_name)}
-                </li>
-                <li>
-                  <strong>Light:</strong> {formatValue(selectedDroneData.light)}
-                </li>
-                <li>
-                  <strong>Country:</strong> {formatValue(selectedDroneData.country)}
-                </li>
-              </ul>
+              <h3 style={{textAlign: "center"}}>Drone Information</h3>
+
+              <div className="data-table">
+                <table style={{backgroundColor: "white"}}>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <strong>Drone ID</strong>
+                      </td>
+                      <td>{selectedDroneData.drone_id}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Drone Name</strong>
+                      </td>
+                      <td>{formatValue(selectedDroneData.drone_name)}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Light</strong>
+                      </td>
+                      <td>{formatValue(selectedDroneData.light)}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Country</strong>
+                      </td>
+                      <td>{formatValue(selectedDroneData.country)}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           ) : loading ? (
             <p>Loading drone details...</p>
@@ -153,4 +180,3 @@ export default function HomePage() {
     </div>
   );
 }
-

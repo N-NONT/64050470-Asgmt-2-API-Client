@@ -23,19 +23,39 @@ export default function DashboardLayout({ children }) {
       </head>
 
       <body className="h-screen overflow-hidden">
-        {/* Navbar */}
-        <nav className="navbar">
+        {/* <nav className="navbar">
           <ul>
             <li>
-              <Link href="/">Home</Link>
+              <Link href="/">Config</Link>
             </li>
             <li>
-              <Link href="/tempLogForm">Temperature Log Form </Link>
+              <Link href="/tempLogForm">Add Log</Link>
             </li>
             <li>
-              <Link href="/ViewLogs">View Logs</Link>
+              <Link href="/ViewLogs">Log History</Link>
             </li>
-            {/* <li><Link href="/page4">Page 4</Link></li> */}
+            <li><Link href="/about">About</Link></li>
+          </ul>
+        </nav> */}
+
+        <nav className="navbar">
+          <ul>
+            <div className="nav-left">
+              <li>
+                <Link href="/">Config</Link>
+              </li>
+              <li>
+                <Link href="/tempLogForm">Add Log</Link>
+              </li>
+              <li>
+                <Link href="/ViewLogs">Log History</Link>
+              </li>
+            </div>
+            <div className="nav-right">
+              <li>
+                <Link href="/about">About</Link>
+              </li>
+            </div>
           </ul>
         </nav>
 
