@@ -91,6 +91,7 @@ export default function HomePage() {
           flexDirection: "column",
           width: isSmallScreen ? "90%" : "55%", 
           marginTop: isSmallScreen ? "20%" : "4%", 
+          fontSize: isSmallScreen ? "20%" : "100%", 
         }}
       >
         <h1 className="toppic" style={{ textAlign: "center" }}>
@@ -135,6 +136,7 @@ export default function HomePage() {
           flexDirection: "column",
           width: isSmallScreen ? "90%" : "45%", 
           marginTop: isSmallScreen ? "5%" : "4%", 
+          fontSize: isSmallScreen ? "20%" : "100%", 
         }}
       >
         <div style={{ flex: "0", padding: "10px" }}>

@@ -56,6 +56,9 @@ html, body {
   text-align: center;
 }
 
+
+
+
 .card.configsL {
   max-height: 90vh;
   overflow-y: auto;
@@ -164,7 +167,7 @@ thead th {
   background-color: #ddd;
 }
 
-/* เพิ่มลักษณะให้หัวของตารางไม่เลื่อน */
+
 thead th {
   position: sticky;
   top: 0;
@@ -172,7 +175,7 @@ thead th {
   z-index: 1;
 }
 
-/* เพิ่มขอบและการแสดงผลส่วนของข้อมูล (ตาราง) */
+
 .table-wrapper {
   width: 100%;
   max-height: 70vh;
@@ -184,60 +187,32 @@ thead th {
 
 
 
-/* Responsive Styles */
+
+
+
+
+
 @media (max-width: 768px) {
+
   .card.configsL {
-    height: 50vh;
-    margin-left: 0;
-    margin-right: 0;
+    max-height: 50vh;
   }
 
-  /* html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    font-family: 'Open Sans', sans-serif;
-  } */
-  
 
-
-
-  table {
-    font-size: 14px;
-  }
-
-  th,
-  td {
-    padding: 8px;
+  .navbar a {
+    font-size: 16px;
+    padding: 8px 12px;
   }
 }
+
 
 @media (max-width: 480px) {
   .card.configsL {
-    height: 50vh;
-    margin-left: 0;
-    margin-right: 0;
+    max-height: 50vh;
   }
 
-  /* html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    font-family: 'Open Sans', sans-serif;
-  } */
-
-
-
-  table {
-    font-size: 12px;
-  }
-
-  th,
-  td {
-    padding: 6px;
+  .navbar a {
+    font-size: 11px;
+    padding: 6px 10px;
   }
 }
-
-
