@@ -12,23 +12,22 @@ export default function ViewLogs({ droneIds }) {
   const handleDroneIdChange = (e) => {
     setDroneId(e.target.value);
     if (e.target.value !== "") {
-      setSearchTerm(""); // disable search input
+      setSearchTerm(""); 
     }
   };
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
     if (e.target.value !== "") {
-      setDroneId(""); // disable droneId select
+      setDroneId(""); 
     }
   };
 
   const fetchLogs = async (id) => {
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://assignment1-470-371682635124.asia-southeast1.run.app/logs/${id}`
-      );
+      const baseUrl = process.env.LOG_SERVER_API_ENDPOINT;
+      const response = await fetch(`${baseUrl}${id}`);
       const data = await response.json();
       setLogs(data.slice(0, 25));
     } catch (error) {
