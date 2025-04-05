@@ -1,4 +1,3 @@
-// src/app/viewLogs/page.js
 import "../css/globals.css";
 import ViewLogs from "./ViewLogs";
 import { getDroneIds } from "../services/getDroneIds";

@@ -88,6 +88,18 @@ html, body {
 }
 
 
+.card.Temp {
+  height: 80vh;
+  overflow-y: auto;
+  width: 95%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 0 auto;
+}
 
 .card.ViewLogs {
   max-height: 80vh;
@@ -115,6 +127,11 @@ html, body {
   position: sticky;
   top: 0;
   background-color: #fff;
+}
+
+
+.temp {
+  width : 93%
 }
 
 table {
@@ -189,8 +206,21 @@ thead th {
 
 
 
+@media (max-width: 1007px) {
 
+  .temp {
+    width : 254%
+  }
 
+}
+
+@media (max-width: 810px) {
+
+  .temp {
+    width : 196%
+  }
+
+}
 
 @media (max-width: 768px) {
 
@@ -203,7 +233,20 @@ thead th {
     font-size: 16px;
     padding: 8px 12px;
   }
+
+  .temp {
+    width : 157%
+  }
+  
 }
+
+@media (max-width: 630px) {
+  .temp {
+    width : 86%
+  }
+  
+}
+
 
 
 @media (max-width: 480px) {
@@ -211,8 +254,19 @@ thead th {
     max-height: 50vh;
   }
 
+
   .navbar a {
     font-size: 11px;
     padding: 6px 10px;
+  }
+
+  .temp {
+    width : 100%
+  }
+}
+
+@media (max-width: 376px) {
+  .temp {
+  width :87%
   }
 }

@@ -171,6 +171,67 @@ export default function HomePage() {
           <hr />
         </div>
 
+
+
+
+        {/* <div
+          style={{
+            flex: "1",
+            padding: "10px",
+            backgroundColor: "#e0e0e0",
+            borderRadius: "10px",
+            marginTop: "30px",
+          }}
+        >
+          {selectedDroneData ? (
+            <div>
+              <h3 style={{ textAlign: "center" }}>Drone Information</h3>
+
+              <div className="data-table">
+                <table style={{ backgroundColor: "white" }}>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <strong>Drone ID</strong>
+                      </td>
+                      <td>{selectedDroneData.drone_id}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Drone Name</strong>
+                      </td>
+                      <td>{formatValue(selectedDroneData.drone_name)}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Light</strong>
+                      </td>
+                      <td>{formatValue(selectedDroneData.light)}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Country</strong>
+                      </td>
+                      <td>{formatValue(selectedDroneData.country)}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : loading ? (
+            <p>Loading drone details...</p>
+          ) : (
+            <p>No drone data available</p>
+          )}
+        </div> */}
+
+
+
+
+
+
+
+
         <div
           style={{
             flex: "1",
@@ -221,6 +282,15 @@ export default function HomePage() {
             <p>No drone data available</p>
           )}
         </div>
+
+
+
+
+
+
+
+
+
       </div>
     </div>
   );
