@@ -1,8 +1,7 @@
 html, body {
   height: 100vh;
   margin: 0;
-  padding: 0;
-  overflow: hidden;
+  padding: 0; 
   background-color: #e6e6e6;
   font-family: 'Open Sans', sans-serif;
 }
@@ -187,19 +186,19 @@ thead th {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .card.configs {
-    width: 60%;
+  .card.configsL {
+    height: 50vh;
     margin-left: 0;
     margin-right: 0;
   }
 
-  html, body {
+  /* html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
     font-family: 'Open Sans', sans-serif;
-  }
+  } */
   
 
 
@@ -215,18 +214,19 @@ thead th {
 }
 
 @media (max-width: 480px) {
-  .card.configs {
-    width: 90%;
-    height: auto;
+  .card.configsL {
+    height: 50vh;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  html, body {
+  /* html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
     font-family: 'Open Sans', sans-serif;
-  }
+  } */
 
 
 
@@ -239,3 +239,5 @@ thead th {
     padding: 6px;
   }
 }
+
+

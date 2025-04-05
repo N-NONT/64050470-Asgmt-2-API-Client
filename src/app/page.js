@@ -9,6 +9,7 @@ export default function HomePage() {
   const [selectedDroneId, setSelectedDroneId] = useState(null);
   const [selectedDroneData, setSelectedDroneData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isSmallScreen, setIsSmallScreen] = useState(false); 
 
   const formatValue = (value) =>
     value === "Error" || value === "N/A" ? "Loading..." : value;
@@ -41,7 +42,26 @@ export default function HomePage() {
       }
     };
 
-    setTimeout(fetchData, 0);
+    fetchData();
+
+
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsSmallScreen(true);
+      } else {
+        setIsSmallScreen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+
+    handleResize();
+
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const handleSelectChange = (event) => {
@@ -54,14 +74,23 @@ export default function HomePage() {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-between" }}>
-      {/* ฝั่งซ้าย */}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: isSmallScreen ? "column" : "row",
+        justifyContent: "space-between",
+      }}
+    >
+
       <div
         className="card configsL"
         style={{
           marginTop: "100px",
           marginLeft: "20px",
+          marginRight: isSmallScreen ? "20px" : "0", 
           flexDirection: "column",
+          width: isSmallScreen ? "90%" : "55%", 
+          marginTop: isSmallScreen ? "20%" : "4%", 
         }}
       >
         <h1 className="toppic" style={{ textAlign: "center" }}>
@@ -95,23 +124,27 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ฝั่งขวา */}
+
       <div
         className="card configsR"
         style={{
-          marginRight: "20px",
-          marginLeft: "20px",
           marginTop: "100px",
+          marginLeft: "20px",
+          marginRight: "20px",
           display: "flex",
           flexDirection: "column",
+          width: isSmallScreen ? "90%" : "45%", 
+          marginTop: isSmallScreen ? "5%" : "4%", 
         }}
       >
         <div style={{ flex: "0", padding: "10px" }}>
-        <br></br> 
+          <br />
+          <br />
           <label htmlFor="droneId">
-            <span style={{ fontSize: "20px"}}>Choose Drone ID</span>
+            <span style={{ fontSize: "20px" }}>Choose Drone ID</span>
           </label>
-          <br></br> <br></br>
+          <br />
+          <br />
           <select
             name="droneId"
             id="droneId"
@@ -131,16 +164,26 @@ export default function HomePage() {
               </option>
             ))}
           </select>
+          <br />
+          <br />
+          <hr />
         </div>
 
-        {/* ส่วนล่าง */}
-        <div  style={{ flex: "1", padding: "10px", backgroundColor: "#e0e0e0", borderRadius: "10px", marginTop: "50px" }}>
+        <div
+          style={{
+            flex: "1",
+            padding: "10px",
+            backgroundColor: "#e0e0e0",
+            borderRadius: "10px",
+            marginTop: "30px",
+          }}
+        >
           {selectedDroneData ? (
             <div>
-              <h3 style={{textAlign: "center"}}>Drone Information</h3>
+              <h3 style={{ textAlign: "center" }}>Drone Information</h3>
 
               <div className="data-table">
-                <table style={{backgroundColor: "white"}}>
+                <table style={{ backgroundColor: "white" }}>
                   <tbody>
                     <tr>
                       <td>
@@ -180,3 +223,4 @@ export default function HomePage() {
     </div>
   );
 }
+
