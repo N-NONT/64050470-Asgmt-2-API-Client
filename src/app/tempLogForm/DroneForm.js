@@ -8,6 +8,8 @@ export default function DroneForm({ droneIds }) {
   const [selectedDroneId, setSelectedDroneId] = useState("");
   const [selectedDroneData, setSelectedDroneData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [celsius, setCelsius] = useState(""); // ← user input
+  const [submitStatus, setSubmitStatus] = useState(null); // ← status message
 
   useEffect(() => {
     const cached = localStorage.getItem("droneData");
@@ -36,7 +38,7 @@ export default function DroneForm({ droneIds }) {
       }
     };
 
-    setTimeout(fetchData, 0); // ไม่บล็อก render
+    setTimeout(fetchData, 0);
   }, [droneIds]);
 
   const handleSelectChange = (event) => {
@@ -46,8 +48,45 @@ export default function DroneForm({ droneIds }) {
     setSelectedDroneData(selectedData || null);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!selectedDroneData || !celsius) {
+      setSubmitStatus("Please fill in all fields.");
+      return;
+    }
+
+    const payload = {
+      drone_id: selectedDroneData.drone_id,
+      drone_name: selectedDroneData.drone_name,
+      country: selectedDroneData.country,
+      celsius: Number(celsius),
+    };
+
+    try {
+      const res = await fetch("https://assignment1-470-371682635124.asia-southeast1.run.app/logs/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        setSubmitStatus("✅ Data submitted successfully.");
+        setCelsius("");
+      } else {
+        setSubmitStatus("❌ Failed to submit data.");
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      setSubmitStatus("❌ Error during submission.");
+    }
+  };
+
   return (
     <div>
+      {/* Drone selector */}
       <div style={{ flex: "1", padding: "10px", backgroundColor: "#f0f0f0" }}>
         <label htmlFor="droneId">Choose Drone ID</label>
         <select
@@ -64,9 +103,10 @@ export default function DroneForm({ droneIds }) {
             </option>
           ))}
         </select>
-        {loading && <p style={{ marginTop: "10px" }}>Loading drone options...</p>}
+        {loading && <p>Loading drone options...</p>}
       </div>
 
+      {/* Drone Info */}
       <div style={{ flex: "1", padding: "10px", backgroundColor: "#e0e0e0" }}>
         {loading ? (
           <p>Loading drone data...</p>
@@ -84,7 +124,29 @@ export default function DroneForm({ droneIds }) {
           <p>No drone data available</p>
         )}
       </div>
+
+      {/* Form for Celsius */}
+      <form onSubmit={handleSubmit} style={{ padding: "10px", backgroundColor: "#fff", marginTop: "20px" }}>
+        <label htmlFor="celsius"><strong>Temperature (Celsius):</strong></label>
+        <input
+          type="number"
+          id="celsius"
+          name="celsius"
+          value={celsius}
+          onChange={(e) => setCelsius(e.target.value)}
+          style={{ width: "100%", padding: "10px", fontSize: "16px", marginTop: "5px", marginBottom: "10px" }}
+        />
+        <button
+          type="submit"
+          disabled={!celsius || loading}
+          style={{ padding: "10px 20px", fontSize: "16px" }}
+        >
+          Submit Data
+        </button>
+        {submitStatus && <p style={{ marginTop: "10px" }}>{submitStatus}</p>}
+      </form>
     </div>
   );
 }
+
 
