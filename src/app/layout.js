@@ -20,8 +20,8 @@ export default function DashboardLayout({ children }) {
           <ul>
             <li><Link href="/">Home</Link></li>
             <li><Link href="/tempLogForm">Temperature Log Form </Link></li>
-            {/* <li><Link href="/page3">Page 3</Link></li>
-            <li><Link href="/page4">Page 4</Link></li> */}
+            <li><Link href="/ViewLogs">View Logs</Link></li>
+            {/* <li><Link href="/page4">Page 4</Link></li> */}
           </ul>
         </nav>
 
