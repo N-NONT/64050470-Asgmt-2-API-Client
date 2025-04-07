@@ -156,7 +156,6 @@ export default function HomePage() {
             }}
             disabled={loading}
           >
-            <option value="">-- Select Drone ID --</option>
             {droneData.map((drone) => (
               <option key={drone.drone_id} value={drone.drone_id}>
                 {drone.drone_id}

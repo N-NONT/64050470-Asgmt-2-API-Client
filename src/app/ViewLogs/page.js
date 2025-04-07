@@ -10,7 +10,7 @@ export default function Page() {
   const droneIds = getDroneIds();
 
   return (
-    <div style={{ marginTop: "60px" }}>
+    <div>
       <ViewLogs droneIds={droneIds} />
     </div>
   );

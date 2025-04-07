@@ -1,9 +1,10 @@
-html, body {
+html,
+body {
   height: 100vh;
   margin: 0;
-  padding: 0; 
+  padding: 0;
   background-color: #e6e6e6;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .navbar {
@@ -56,9 +57,6 @@ html, body {
   text-align: center;
 }
 
-
-
-
 .card.configsL {
   overflow-y: auto;
   width: 60%;
@@ -74,8 +72,7 @@ html, body {
 }
 
 .card.configsR {
-  /* overflow-y: auto; */
-  width: 40%;  
+  width: 40%;
   padding: 20px;
   box-sizing: border-box;
   display: flex;
@@ -87,12 +84,11 @@ html, body {
   margin: 10px;
 }
 
-
 .card.Temp {
-  height: 90vh;
-  overflow-y: auto;
-  width: 95%;
-  padding: 10px;
+  height: 85vh;
+  /* overflow-y: auto; */
+  width: 90%;
+  /* padding: 50px; */
   box-sizing: border-box;
   background-color: #ffffff;
   border: 1px solid #ccc;
@@ -102,18 +98,15 @@ html, body {
 }
 
 .card.ViewLogs {
-  max-height: 80vh;
+  height: 85vh;
   overflow-y: auto;
-  width: 95%;
-  padding: 20px;
+  width: 90%;
+  /* padding: 50px; */
   box-sizing: border-box;
   background-color: #ffffff;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0 auto;
 }
 
@@ -129,9 +122,8 @@ html, body {
   background-color: #fff;
 }
 
-
 .temp {
-  width : 93%
+  width: 93%;
 }
 
 table {
@@ -152,10 +144,6 @@ thead th {
   background-color: #fff;
   z-index: 1;
 }
-
-
-
-
 
 .data-table table {
   width: 100%;
@@ -184,7 +172,6 @@ thead th {
   background-color: #ddd;
 }
 
-
 thead th {
   position: sticky;
   top: 0;
@@ -192,14 +179,12 @@ thead th {
   z-index: 1;
 }
 
-
 .table-wrapper {
   width: 100%;
   max-height: 70vh;
   overflow-y: auto;
   margin-top: 20px;
 }
-
 
 .cellStyle {
   border: 1px solid #ddd;
@@ -210,77 +195,24 @@ thead th {
   max-width: 150px;
 }
 
-
-
-
-
-
-
-
-
-
-
-@media (max-width: 1007px) {
-
-  .temp {
-    width : 254%
-  }
-
-}
-
-@media (max-width: 810px) {
-
-  .temp {
-    width : 196%
-  }
-
-}
-
 @media (max-width: 768px) {
-
   .card.configsL {
     max-height: 50vh;
   }
-
 
   .navbar a {
     font-size: 16px;
     padding: 8px 12px;
   }
-
-  .temp {
-    width : 157%
-  }
-  
 }
-
-@media (max-width: 630px) {
-  .temp {
-    width : 86%
-  }
-  
-}
-
-
 
 @media (max-width: 480px) {
   .card.configsL {
     max-height: 50vh;
   }
 
-
   .navbar a {
     font-size: 11px;
     padding: 6px 10px;
-  }
-
-  .temp {
-    width : 100%
-  }
-}
-
-@media (max-width: 376px) {
-  .temp {
-  width :87%
   }
 }

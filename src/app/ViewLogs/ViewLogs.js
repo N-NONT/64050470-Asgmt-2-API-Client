@@ -65,11 +65,11 @@ export default function ViewLogs({ droneIds }) {
   return (
     <div
       style={{
-        marginTop: "60px",
+        marginTop: isSmallScreen ? "80px" : "100px",
         flexDirection: isSmallScreen ? "column" : "row",
       }}
     >
-      <div className="card Temp">
+      <div className="card ViewLogs" style={{padding: isSmallScreen ? "10px" : "50px",}}>
         <h1
           style={{
             textAlign: "center",

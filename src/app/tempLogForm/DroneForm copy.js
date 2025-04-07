@@ -108,15 +108,19 @@ export default function DroneForm({ droneIds }) {
     }
   };
 
+
+
+
+
+
+
+
+
+
+  
   return (
-    <div style={{ marginTop: isSmallScreen ? "80px" : "100px" }}>
-      <div
-        className="card Temp"
-        style={{
-          height: isSmallScreen ? "auto" : "100%",
-          padding: isSmallScreen ? "10px" : "50px",
-        }}
-      >
+    <div style={{ marginTop: "100px" }}>
+      <div className="card Temp">
         <div
           style={{ textAlign: "center", color: "#333", marginBottom: "30px" }}
         >
@@ -133,18 +137,42 @@ export default function DroneForm({ droneIds }) {
           </h1>
         </div>
 
+
+
+
+
+
+
+
         <div
           style={{
             display: "flex",
             flexDirection: isSmallScreen ? "column" : "row",
+            justifyContent: "center",
+            gap: "30px",
+            alignItems: "flex-start",
+            width: "90%",
+            margin: "0 auto",
           }}
         >
+
+
+
+
           <div
             style={{
-              padding: "10px",
-              width: isSmallScreen ? "90%" : "45%",
+              flex: "1",
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
             }}
           >
+
+
+
+
+
+
             <div
               className="temp"
               style={{
@@ -211,15 +239,25 @@ export default function DroneForm({ droneIds }) {
               )}
             </div>
 
+
+
+
+
+
+
+
+
+
+
+
             <div
               className="temp"
               style={{
-                minHeight: "20vh",
+                height: "20vh",
                 borderRadius: "8px",
                 padding: "20px",
                 backgroundColor: "#f9f9f9",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                marginTop: "30px",
               }}
             >
               <form onSubmit={handleSubmit}>
@@ -233,7 +271,7 @@ export default function DroneForm({ droneIds }) {
                     fontSize: isSmallScreen ? "95%" : "100%",
                   }}
                 >
-                  Add Temperature (Celsius, <sup>o</sup>C)
+                  Temperature (Celsius, <sup>o</sup>C)
                 </label>
                 <input
                   type="number"
@@ -292,158 +330,171 @@ export default function DroneForm({ droneIds }) {
                 )}
               </form>
             </div>
+
+
+
+
+
+
+
+
+
+
+
           </div>
+
+
+
+
+
+
+
+
 
           <div
             style={{
-              padding: "10px",
-              width: isSmallScreen ? "90%" : "50%",
+              flex: "2",
+              height: "51vh",
+              backgroundColor: "#f0f0f0",
+              padding: "20px",
+              borderRadius: "8px",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
             }}
           >
-            <div
+            <h3 style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>
+              Submitted Data
+            </h3>
+            <table
               style={{
-                backgroundColor: "#f0f0f0",
-                padding: "20px",
+                width: "100%",
+                backgroundColor: "#fff",
+                borderCollapse: "collapse",
+                marginTop: "15px",
+                margin: "5px",
                 borderRadius: "8px",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                height: isSmallScreen ? "auto" : "91.5%",
               }}
             >
-              <h3
-                style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}
-              >
-                Submitted Data
-              </h3>
-              <table
-                style={{
-                  width: "100%",
-                  backgroundColor: "#fff",
-                  borderCollapse: "collapse",
-                  marginTop: "15px",
-                  margin: "5px",
-                  borderRadius: "8px",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th
-                      style={{
-                        border: "1px solid #ddd",
-                        padding: "12px",
-                        backgroundColor: "#4CAF50",
-                        color: "#fff",
-                        fontSize: "16px",
-                        textAlign: "left",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Field
-                    </th>
-                    <th
-                      style={{
-                        border: "1px solid #ddd",
-                        padding: "12px",
-                        backgroundColor: "#4CAF50",
-                        color: "#fff",
-                        fontSize: "16px",
-                        textAlign: "left",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Value
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {submittedPayload ? (
-                    <>
-                      <tr style={{ backgroundColor: "#f9f9f9" }}>
-                        <td
-                          style={{
-                            border: "1px solid #ddd",
-                            padding: "12px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Drone ID
-                        </td>
-                        <td
-                          style={{ border: "1px solid #ddd", padding: "12px" }}
-                        >
-                          {submittedPayload.drone_id}
-                        </td>
-                      </tr>
-                      <tr style={{ backgroundColor: "#fff" }}>
-                        <td
-                          style={{
-                            border: "1px solid #ddd",
-                            padding: "12px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Drone Name
-                        </td>
-                        <td
-                          style={{ border: "1px solid #ddd", padding: "12px" }}
-                        >
-                          {submittedPayload.drone_name}
-                        </td>
-                      </tr>
-                      <tr style={{ backgroundColor: "#f9f9f9" }}>
-                        <td
-                          style={{
-                            border: "1px solid #ddd",
-                            padding: "12px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Country
-                        </td>
-                        <td
-                          style={{ border: "1px solid #ddd", padding: "12px" }}
-                        >
-                          {submittedPayload.country}
-                        </td>
-                      </tr>
-                      <tr style={{ backgroundColor: "#fff" }}>
-                        <td
-                          style={{
-                            border: "1px solid #ddd",
-                            padding: "12px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Temperature (Celsius)
-                        </td>
-                        <td
-                          style={{ border: "1px solid #ddd", padding: "12px" }}
-                        >
-                          {submittedPayload.celsius}
-                        </td>
-                      </tr>
-                    </>
-                  ) : (
-                    <tr>
+              <thead>
+                <tr>
+                  <th
+                    style={{
+                      border: "1px solid #ddd",
+                      padding: "12px",
+                      backgroundColor: "#4CAF50",
+                      color: "#fff",
+                      fontSize: "16px",
+                      textAlign: "left",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Field
+                  </th>
+                  <th
+                    style={{
+                      border: "1px solid #ddd",
+                      padding: "12px",
+                      backgroundColor: "#4CAF50",
+                      color: "#fff",
+                      fontSize: "16px",
+                      textAlign: "left",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Value
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {submittedPayload ? (
+                  <>
+                    <tr style={{ backgroundColor: "#f9f9f9" }}>
                       <td
-                        colSpan="2"
                         style={{
                           border: "1px solid #ddd",
                           padding: "12px",
-                          textAlign: "center",
-                          color: "#888",
-                          fontStyle: "italic",
+                          fontWeight: "bold",
                         }}
                       >
-                        No data submitted yet.
+                        Drone ID
+                      </td>
+                      <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                        {submittedPayload.drone_id}
                       </td>
                     </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                    <tr style={{ backgroundColor: "#fff" }}>
+                      <td
+                        style={{
+                          border: "1px solid #ddd",
+                          padding: "12px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Drone Name
+                      </td>
+                      <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                        {submittedPayload.drone_name}
+                      </td>
+                    </tr>
+                    <tr style={{ backgroundColor: "#f9f9f9" }}>
+                      <td
+                        style={{
+                          border: "1px solid #ddd",
+                          padding: "12px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Country
+                      </td>
+                      <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                        {submittedPayload.country}
+                      </td>
+                    </tr>
+                    <tr style={{ backgroundColor: "#fff" }}>
+                      <td
+                        style={{
+                          border: "1px solid #ddd",
+                          padding: "12px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Temperature (Celsius)
+                      </td>
+                      <td style={{ border: "1px solid #ddd", padding: "12px" }}>
+                        {submittedPayload.celsius}
+                      </td>
+                    </tr>
+                  </>
+                ) : (
+                  <tr>
+                    <td
+                      colSpan="2"
+                      style={{
+                        border: "1px solid #ddd",
+                        padding: "12px",
+                        textAlign: "center",
+                        color: "#888",
+                        fontStyle: "italic",
+                      }}
+                    >
+                      No data submitted yet.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
+
+
+
+
+
+
+
+
+
+
       </div>
     </div>
   );

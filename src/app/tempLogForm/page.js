@@ -10,7 +10,7 @@ export default async function Page2() {
   const droneIds = getDroneIds(); 
 
   return (
-    <div style={{ marginTop: "60px" }}>
+    <div>
       <DroneForm droneIds={droneIds} />
     </div>
   );
