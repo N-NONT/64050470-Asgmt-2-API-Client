@@ -9,7 +9,7 @@ export default function HomePage() {
   const [selectedDroneId, setSelectedDroneId] = useState(null);
   const [selectedDroneData, setSelectedDroneData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isSmallScreen, setIsSmallScreen] = useState(false); 
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   const formatValue = (value) =>
     value === "Error" || value === "N/A" ? "Loading..." : value;
@@ -44,9 +44,8 @@ export default function HomePage() {
 
     fetchData();
 
-
     const handleResize = () => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 1007) {
         setIsSmallScreen(true);
       } else {
         setIsSmallScreen(false);
@@ -55,9 +54,7 @@ export default function HomePage() {
 
     window.addEventListener("resize", handleResize);
 
-
     handleResize();
-
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -78,20 +75,20 @@ export default function HomePage() {
       style={{
         display: "flex",
         flexDirection: isSmallScreen ? "column" : "row",
-        justifyContent: "space-between",
+        justifyContent: "center",
+        alignItems: "center",
+        height: isSmallScreen ? "" : "100vh",
+        padding: isSmallScreen ? "20px" : "0",
+        marginTop: isSmallScreen ? "50px" : "20px",
       }}
     >
-
       <div
         className="card configsL"
         style={{
-          marginTop: "100px",
-          marginLeft: "20px",
-          marginRight: isSmallScreen ? "20px" : "0", 
           flexDirection: "column",
-          width: isSmallScreen ? "90%" : "55%", 
-          marginTop: isSmallScreen ? "20%" : "4%", 
-          fontSize: isSmallScreen ? "70%" : "100%", 
+          width: isSmallScreen ? "90%" : "55%",
+          fontSize: isSmallScreen ? "70%" : "100%",
+          height: "86%",
         }}
       >
         <h1 className="toppic" style={{ textAlign: "center" }}>
@@ -125,28 +122,24 @@ export default function HomePage() {
         </div>
       </div>
 
-
       <div
         className="card configsR"
         style={{
-          marginTop: "100px",
-          marginLeft: "20px",
-          marginRight: "20px",
-          display: "flex",
           flexDirection: "column",
-          width: isSmallScreen ? "90%" : "45%", 
-          marginTop: isSmallScreen ? "5%" : "4%", 
-          fontSize: isSmallScreen ? "70%" : "100%", 
+          width: isSmallScreen ? "90%" : "45%",
+          fontSize: isSmallScreen ? "70%" : "100%",
+          height: "86%",
         }}
       >
         <div style={{ flex: "0", padding: "10px" }}>
-          <br />
-          <br />
-          <label htmlFor="droneId">
-            <span style={{ fontSize: "20px" }}>Choose Drone ID</span>
-          </label>
-          <br />
-          <br />
+          <h2
+            style={{
+              textAlign: "center",
+              fontSize: isSmallScreen ? "18px" : "20px",
+            }}
+          >
+            Choose Drone ID
+          </h2>
           <select
             name="droneId"
             id="droneId"
@@ -154,123 +147,117 @@ export default function HomePage() {
             onChange={handleSelectChange}
             style={{
               width: "100%",
-              padding: "10px",
+              padding: "12px",
               fontSize: "16px",
               borderRadius: "5px",
+              border: "1px solid #ddd",
+              backgroundColor: "#fff",
+              marginBottom: "20px",
             }}
             disabled={loading}
           >
+            <option value="">-- Select Drone ID --</option>
             {droneData.map((drone) => (
               <option key={drone.drone_id} value={drone.drone_id}>
                 {drone.drone_id}
               </option>
             ))}
           </select>
-          <br />
-          <br />
+          {loading && <p style={{ color: "#888" }}>Loading drone options...</p>}
           <hr />
         </div>
-
-
-
-
-        {/* <div
-          style={{
-            flex: "1",
-            padding: "10px",
-            backgroundColor: "#e0e0e0",
-            borderRadius: "10px",
-            marginTop: "30px",
-          }}
-        >
-          {selectedDroneData ? (
-            <div>
-              <h3 style={{ textAlign: "center" }}>Drone Information</h3>
-
-              <div className="data-table">
-                <table style={{ backgroundColor: "white" }}>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <strong>Drone ID</strong>
-                      </td>
-                      <td>{selectedDroneData.drone_id}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Drone Name</strong>
-                      </td>
-                      <td>{formatValue(selectedDroneData.drone_name)}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Light</strong>
-                      </td>
-                      <td>{formatValue(selectedDroneData.light)}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Country</strong>
-                      </td>
-                      <td>{formatValue(selectedDroneData.country)}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          ) : loading ? (
-            <p>Loading drone details...</p>
-          ) : (
-            <p>No drone data available</p>
-          )}
-        </div> */}
-
-
-
-
-
-
-
 
         <div
           style={{
             flex: "1",
-            padding: "10px",
-            backgroundColor: "#e0e0e0",
+            padding: "20px",
+            backgroundColor: "#e8f0f2",
             borderRadius: "10px",
             marginTop: "30px",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
           }}
         >
           {selectedDroneData ? (
             <div>
-              <h3 style={{ textAlign: "center" }}>Drone Information</h3>
+              <h3
+                style={{
+                  textAlign: "center",
+                  fontSize: isSmallScreen ? "16px" : "20px",
+                }}
+              >
+                Drone Information
+              </h3>
 
               <div className="data-table">
-                <table style={{ backgroundColor: "white" }}>
+                <table
+                  style={{
+                    width: "100%",
+                    backgroundColor: "#fff",
+                    borderRadius: "8px",
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                    borderCollapse: "collapse",
+                  }}
+                >
                   <tbody>
                     <tr>
-                      <td>
-                        <strong>Drone ID</strong>
+                      <td
+                        style={{
+                          padding: "12px",
+                          fontWeight: "bold",
+                          backgroundColor: "#f9f9f9",
+                          border: "1px solid #ddd",
+                        }}
+                      >
+                        Drone ID
                       </td>
-                      <td>{selectedDroneData.drone_id}</td>
+                      <td style={{ padding: "12px", border: "1px solid #ddd" }}>
+                        {selectedDroneData.drone_id}
+                      </td>
                     </tr>
                     <tr>
-                      <td>
-                        <strong>Drone Name</strong>
+                      <td
+                        style={{
+                          padding: "12px",
+                          fontWeight: "bold",
+                          backgroundColor: "#f9f9f9",
+                          border: "1px solid #ddd",
+                        }}
+                      >
+                        Drone Name
                       </td>
-                      <td>{formatValue(selectedDroneData.drone_name)}</td>
+                      <td style={{ padding: "12px", border: "1px solid #ddd" }}>
+                        {formatValue(selectedDroneData.drone_name)}
+                      </td>
                     </tr>
                     <tr>
-                      <td>
-                        <strong>Light</strong>
+                      <td
+                        style={{
+                          padding: "12px",
+                          fontWeight: "bold",
+                          backgroundColor: "#f9f9f9",
+                          border: "1px solid #ddd",
+                        }}
+                      >
+                        Light
                       </td>
-                      <td>{formatValue(selectedDroneData.light)}</td>
+                      <td style={{ padding: "12px", border: "1px solid #ddd" }}>
+                        {formatValue(selectedDroneData.light)}
+                      </td>
                     </tr>
                     <tr>
-                      <td>
-                        <strong>Country</strong>
+                      <td
+                        style={{
+                          padding: "12px",
+                          fontWeight: "bold",
+                          backgroundColor: "#f9f9f9",
+                          border: "1px solid #ddd",
+                        }}
+                      >
+                        Country
                       </td>
-                      <td>{formatValue(selectedDroneData.country)}</td>
+                      <td style={{ padding: "12px", border: "1px solid #ddd" }}>
+                        {formatValue(selectedDroneData.country)}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -282,17 +269,7 @@ export default function HomePage() {
             <p>No drone data available</p>
           )}
         </div>
-
-
-
-
-
-
-
-
-
       </div>
     </div>
   );
 }
-

@@ -60,7 +60,6 @@ html, body {
 
 
 .card.configsL {
-  max-height: 90vh;
   overflow-y: auto;
   width: 60%;
   padding: 20px;
@@ -71,11 +70,11 @@ html, body {
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  margin: 10px;
 }
 
 .card.configsR {
-  max-height: 90vh;  
-  overflow-y: auto;
+  /* overflow-y: auto; */
   width: 40%;  
   padding: 20px;
   box-sizing: border-box;
@@ -85,6 +84,7 @@ html, body {
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  margin: 10px;
 }
 
 
