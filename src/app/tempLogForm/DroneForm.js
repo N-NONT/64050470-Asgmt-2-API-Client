@@ -8,39 +8,26 @@ export default function DroneForm({ droneIds }) {
   const [selectedDroneId, setSelectedDroneId] = useState("");
   const [selectedDroneData, setSelectedDroneData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [celsius, setCelsius] = useState(""); 
-  const [submitStatus, setSubmitStatus] = useState(null); 
-  const [submittedPayload, setSubmittedPayload] = useState(null); 
-
-
-
-  
-
+  const [celsius, setCelsius] = useState("");
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submittedPayload, setSubmittedPayload] = useState(null);
 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-useEffect(() => {
-  const handleResize = () => {
-    if (window.innerWidth <= 1007) {
-      setIsSmallScreen(true);
-    } else {
-      setIsSmallScreen(false);
-    }
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1007) {
+        setIsSmallScreen(true);
+      } else {
+        setIsSmallScreen(false);
+      }
+    };
 
-  handleResize();
-  window.addEventListener("resize", handleResize);
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
-
-
-
-
-
-
-
-  
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const formatValue = (value) =>
     value === "Error" || value === "N/A" ? "Loading..." : value;
@@ -111,7 +98,7 @@ useEffect(() => {
       if (res.ok) {
         setSubmitStatus("✅ Data submitted successfully.");
         setCelsius("");
-        setSubmittedPayload(payload);  
+        setSubmittedPayload(payload);
       } else {
         setSubmitStatus("❌ Failed to submit data.");
       }
@@ -127,29 +114,30 @@ useEffect(() => {
         <div
           style={{ textAlign: "center", color: "#333", marginBottom: "30px" }}
         >
-          <h1 className="toppic">Temperature Log Form</h1>
+          <h1
+            className="toppic"
+            style={{
+              textAlign: "center",
+              color: "#333",
+              marginBottom: "30px",
+              fontSize: isSmallScreen ? "150%" : "250%",
+            }}
+          >
+            Temperature Log Form
+          </h1>
         </div>
 
-        
-
-
-<div
-  style={{
-    display: "flex",
-    flexDirection: isSmallScreen ? "column" : "row",
-    justifyContent: "center",
-    gap: "30px",
-    alignItems: "flex-start",
-    width: "90%",
-    margin: "0 auto",
-  }}
->
-
-
-
-
-
-          
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isSmallScreen ? "column" : "row",
+            justifyContent: "center",
+            gap: "30px",
+            alignItems: "flex-start",
+            width: "90%",
+            margin: "0 auto",
+          }}
+        >
           <div
             style={{
               flex: "1",
@@ -158,9 +146,8 @@ useEffect(() => {
               gap: "20px",
             }}
           >
-          
-            <div className="temp"
-
+            <div
+              className="temp"
               style={{
                 borderRadius: "8px",
                 backgroundColor: "#e8f0f2",
@@ -201,7 +188,7 @@ useEffect(() => {
                   Loading drone options...
                 </p>
               )}
-           
+
               {selectedDroneData && (
                 <div style={{ marginTop: "20px" }}>
                   <h3 style={{ fontSize: "16px", fontWeight: "bold" }}>
@@ -209,22 +196,24 @@ useEffect(() => {
                   </h3>
                   <ul style={{ marginLeft: "20px", marginTop: "10px" }}>
                     <li>
-                      <strong>Drone ID:</strong> {formatValue(selectedDroneData.drone_id)}
+                      <strong>Drone ID:</strong>{" "}
+                      {formatValue(selectedDroneData.drone_id)}
                     </li>
                     <li>
                       <strong>Drone Name:</strong>{" "}
                       {formatValue(selectedDroneData.drone_name)}
                     </li>
                     <li>
-                      <strong>Country:</strong> {formatValue(selectedDroneData.country)}
+                      <strong>Country:</strong>{" "}
+                      {formatValue(selectedDroneData.country)}
                     </li>
                   </ul>
                 </div>
               )}
             </div>
 
-            
-            <div className="temp"
+            <div
+              className="temp"
               style={{
                 height: "20vh",
                 borderRadius: "8px",
@@ -241,6 +230,7 @@ useEffect(() => {
                     fontWeight: "bold",
                     display: "block",
                     marginBottom: "10px",
+                    fontSize: isSmallScreen ? "95%" : "100%",
                   }}
                 >
                   Temperature (Celsius, <sup>o</sup>C)
@@ -259,6 +249,7 @@ useEffect(() => {
                     borderRadius: "4px",
                     border: "1px solid #ddd",
                     backgroundColor: "#fff",
+                    fontSize: isSmallScreen ? "95%" : "100%",
                   }}
                 />
                 <div
@@ -279,6 +270,8 @@ useEffect(() => {
                       borderRadius: "4px",
                       border: "none",
                       cursor: "pointer",
+                      width: isSmallScreen ? "100%" : "35%",
+                      fontSize: isSmallScreen ? "95%" : "100%",
                     }}
                   >
                     Submit
@@ -291,6 +284,7 @@ useEffect(() => {
                       marginTop: "10px",
                       color: "#4CAF50",
                       fontWeight: "bold",
+                      fontSize: isSmallScreen ? "80%" : "100%",
                     }}
                   >
                     {submitStatus}
@@ -300,7 +294,6 @@ useEffect(() => {
             </div>
           </div>
 
-          
           <div
             style={{
               flex: "2",
@@ -309,7 +302,6 @@ useEffect(() => {
               padding: "20px",
               borderRadius: "8px",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-
             }}
           >
             <h3 style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>

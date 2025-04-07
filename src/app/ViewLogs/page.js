@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 export default function Page() {
-  const droneIds = getDroneIds(); // Server-side
+  const droneIds = getDroneIds();
 
   return (
     <div style={{ marginTop: "60px" }}>

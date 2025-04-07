@@ -89,7 +89,7 @@ html, body {
 
 
 .card.Temp {
-  height: 80vh;
+  height: 90vh;
   overflow-y: auto;
   width: 95%;
   padding: 10px;
@@ -199,6 +199,20 @@ thead th {
   overflow-y: auto;
   margin-top: 20px;
 }
+
+
+.cellStyle {
+  border: 1px solid #ddd;
+  padding: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+
+
+
 
 
 
