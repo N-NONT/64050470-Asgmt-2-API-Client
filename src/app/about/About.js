@@ -40,7 +40,7 @@ export default function About() {
         alignItems: "center",
         padding: "20px",
         boxSizing: "border-box",
-        overflow: "hidden",
+        // overflow: "hidden",
         fontSize: isSmallScreen ? "8px" : "",
       }}
     >
@@ -51,6 +51,7 @@ export default function About() {
           gap: "20px",
           width: "80vw",
           height: isSmallScreen ? "auto" : "80vh",
+          marginTop: isSmallScreen ? "auto" : "auto",
         }}
       >
         <div
