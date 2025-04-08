@@ -52,6 +52,7 @@ export default function About() {
           width: "80vw",
           height: isSmallScreen ? "auto" : "80vh",
           marginTop: isSmallScreen ? "auto" : "50px",
+          marginBottom: isSmallScreen ? "50px" : "",
         }}
       >
         <div
