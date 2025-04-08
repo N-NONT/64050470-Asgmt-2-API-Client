@@ -51,7 +51,7 @@ export default function About() {
           gap: "20px",
           width: "80vw",
           height: isSmallScreen ? "auto" : "80vh",
-          marginTop: isSmallScreen ? "auto" : "auto",
+          marginTop: isSmallScreen ? "auto" : "50px",
         }}
       >
         <div
